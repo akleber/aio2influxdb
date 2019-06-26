@@ -2,7 +2,8 @@ from influxdb import InfluxDBClient
 import time
 import datetime
 
-DB_NAME = aio-test
+DB_NAME = 'aio-test'
+
 
 def writeData(db, time, measurement, value):
     json_body = [
@@ -14,21 +15,23 @@ def writeData(db, time, measurement, value):
             }
         }
     ]
-    dbclient.write_points(json_body)
+    db.write_points(json_body)
+    print("Data written")
+
 
 def main():
     print("Start")
 
-    dbclient = InfluxDBClient('localhost', 8086, 'root', 'root', 'aio')
+    dbclient = InfluxDBClient(host='localhost', port=8086, username='root', password='root', database=DB_NAME)
     print("Database connection established")
 
-    client.create_database(DB_NAME)
+    dbclient.create_database(DB_NAME)
     print("Ensure database: " + DB_NAME)
 
     for x in range(0, 10):
-        time = datetime.datetime.utcnow()
-        writeData(dbclient, time, pv, x)
+        writeData(dbclient, datetime.datetime.utcnow(), 'pv', x)
         time.sleep(5)
+
 
 if __name__ == "__main__":
     main()
