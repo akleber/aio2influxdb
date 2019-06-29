@@ -18,7 +18,7 @@ def write_data(db, time, measurement, value):
         }
     ]
     db.write_points(json_body)
-    print("Data written")
+    #print("Data written")
 
 
 def fetch_and_write(db):
@@ -60,12 +60,12 @@ def fetch_and_write(db):
     if m:
         bt_soc = m.group(1)
 
-    print("grid_p: {}".format(grid_p))
-    print("load_p: {}".format(load_p))
-    print("pv_p: {}".format(pv_p))
-    print("inv_p: {}".format(inv_p))
-    print("bt_p: {}".format(bt_p))
-    print("bt_soc: {}".format(bt_soc))
+    #print("grid_p: {}".format(grid_p))
+    #print("load_p: {}".format(load_p))
+    #print("pv_p: {}".format(pv_p))
+    #print("inv_p: {}".format(inv_p))
+    #print("bt_p: {}".format(bt_p))
+    #print("bt_soc: {}".format(bt_soc))
 
     write_data(db, time, "grid_p", grid_p)
     write_data(db, time, "load_p", load_p)
@@ -73,6 +73,8 @@ def fetch_and_write(db):
     write_data(db, time, "inv_p", inv_p)
     write_data(db, time, "bt_p", bt_p)
     write_data(db, time, "bt_soc", bt_soc)
+
+    print("Data written")
 
 
 def main():
