@@ -8,7 +8,7 @@
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install python3 supervisor git
+sudo apt-get install python3 supervisor git screen
 
 wget -qO- https://repos.influxdata.com/influxdb.key | sudo apt-key add -
 echo "deb https://repos.influxdata.com/debian stretch stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
@@ -22,4 +22,9 @@ sudo dpkg -i grafana-rpi_6.2.4_armhf.deb
 
 git clone https://github.com/akleber/aio2influxdb.git
 ```
+
+## Dashboard
+
+* http://raspberrypi.fritz.box:3000
+* Username/Password: admin/admin
 
