@@ -1,0 +1,285 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html><head>
+<html>
+<head>
+<title> EDM (EMS Direct Manager) -V0.1   Samsung SDI @ 2014</title>
+
+<style type="text/css">
+td {
+  font-family: Arial;
+  font-size: 11px;
+  background-color: #FFFFFF;
+  vertical-align: middle;
+  border: thin solid #333333;
+}
+  
+.stblue {
+  font-family: Arial;
+  font-size: 11px;
+  background-color: #99CCFF;
+  border: thin solid #000080;
+  padding: 1px;
+  margin: 1px;
+  vertical-align: middle;
+}
+
+.stred {
+  font-family: Arial;
+  font-size: 11px;
+  background-color: #FFCCCC;
+  border: thin solid #993300;
+  padding: 1px;
+  margin: 1px;
+  vertical-align: middle;
+}
+.title_gray {
+  font-family: Arial;
+  font-size: 12px;
+  background-color: #CCCCCC;
+  border: thin dashed #333333;
+  padding: 1px;
+  margin: 1px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+.st_gray {
+  font-family: Arial;
+  font-size: 11px;
+  background-color: #CCCCCC;
+  border: thin solid #000080;
+  padding: 1px;
+  margin: 1px;
+  vertical-align: middle;
+}
+.styellow {
+  font-family: Arial;
+  font-size: 11px;
+  background-color: #FFFF66;
+  border: thin solid #663300;
+  padding: 1px;
+  margin: 1px;
+  vertical-align: middle;
+}
+.stgreen {
+  font-family: Arial;
+  font-size: 11px;
+  background-color: #CCFF33;
+  border: thin solid #333300;
+  padding: 1px;
+  margin: 1px;
+  vertical-align: middle;
+}
+.stpurple {
+  font-family: Arial;
+  font-size: 11px;
+  background-color: #CC99FF;
+  border: thin solid #660066;
+  padding: 1px;
+  margin: 1px;
+  vertical-align: middle;
+}
+.font_bold_red {
+  font-weight: bold;
+  color: #FFCCCC;
+  background-color: #CC0000;
+}
+.box_gray {
+  font-family: Arial;
+  font-size: 11px;
+  background-color: #CCCCCC;
+  border: thin solid #333333;
+  padding: 1px;
+  margin: 1px;
+}
+.title_white {
+  font-family: Arial;
+  font-size: 10px;
+  background-color: #FFFFFF;
+  border: thin dashed #666666;
+  vertical-align: middle;
+}
+.title_report_white {
+  font-family: Arial;
+  font-size: 15px;
+  background-color: #FFFFFF;
+  border: thin solid #333333;
+  padding: 1px;
+  margin: 1px;
+}
+</style>
+</head>
+
+<body>
+
+
+<script type="text/javascript">
+var stopv=0;
+var reLoadtimer=setInterval("stopsend();", 5000 );
+function stopsend()
+{
+stopv=1;
+clearInterval(reLoadtimer);
+}
+function movef0()
+{
+if(stopv==1)
+{
+location.href='/f0';
+}
+else
+{
+alert('wait some sec');
+}
+}
+</script>
+
+<hr>(2019-6-29, 15:46:35) --- EMS Monitoring data
+ ..... <input type=button value="Refresh"  onClick="movef0()" class=styellow style="width:120px"> .... [ <a href="/F0s"> More data </a> ]
+</center><hr>
+<table style="width:700px; margin:1px; border-spacing:1px; background-color:#FFFFFF; border-collapse:collapse; border: 1px solid #666666;">
+<tr><td style="background-color:#DDFFFF;vertical-align:top;">
+<table style="width:300px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=4 style="background-color:#444444;color:white;">EMS Control MODE</td></tr>
+<tr><td width=90>EMS(8)</td><td colspan=3>ELA: Local Auto</td></tr>
+<tr><td width=90>EMS-ELA:CMD</td><td align=center width=50>A (W)</td><td width=90>GRID Target Power</td><td align=center width=50>0</td></tr>
+<tr><td>EMS-ELS:CMD</td><td align=center>S (0)</td><td>GRID Target Power</td><td align=center>0</td></tr>
+<tr><td>EMS:Send CMD</td><td align=center style="background-color:#AAAAFF">A (W)</td><td>Send Target Power</td><td align=center style="background-color:#AAAAFF">666</td></tr>
+<tr><td>PCS:Running CMD</td><td align=center style="background-color:#FFAAAA">A (W)</td><td>PCS Target Power</td><td align=center style="background-color:#FFAAAA">666</td></tr>
+<tr><td>GRID_P</td><td>-3396.00</td><td>LOAD_P</td><td>427.80</td></tr>
+<tr><td>PV_P</td><td>3931.86</td><td>INV_P</td><td>3823.80</td></tr>
+<tr><td>BT_P</td><td>-12.80</td><td>PV_P_User</td><td>3823.80</td></tr>
+<tr><td>BT_SOC</td><td>93.00</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>GRID_P(30s)</td><td>-3421</td><td>LOAD_P(30s)</td><td>400</td></tr>
+<tr><td>PV_P(30s)</td><td>3936</td><td>INV_P(30s)</td><td>3821</td></tr>
+<tr><td>Temp</td><td>34.8</td><td>(ADC)</td><td>1686</td></tr>
+</table>
+
+<table style="width:300px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=6 style="background-color:#444444;color:white;">EMS Control [FLAG 0]</td></tr>
+<tr><td width=80>SYS_READY</td><td width=20>1</td><td width=80>SYS FAULT</td><td width=20>0</td><td width=80> &nbsp; </td><td width=20> &nbsp; </td></tr>
+<tr><td>PV_run</td><td>1</td><td>BT_CH_run</td><td>0</td><td>BT_DIS_run</td><td>0</td></tr>
+</table>
+
+<table style="width:300px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=6 style="background-color:#444444;color:white;">EMS Control [FLAG 1-STATUS]</td></tr>
+<tr><td width=80>PV</td><td width=20>1</td><td width=80>BT_CH</td><td width=20>0</td><td width=80>BT_DISCH</td><td width=20>1</td></tr>
+<tr><td>GRID</td><td>1</td><td>S-Meter</td><td>1</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>BDC_Disch</td><td>1</td><td>PV AutoMode</td><td>1</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table style="width:300px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=6 style="background-color:#444444;color:white;">EMS Control [FLAG 4-PCS_Infor]</td></tr>
+<tr><td width=80>PCS_Ready</td><td width=20>1</td><td width=80>PCS_War</td><td width=20>0</td><td width=80>PCS_Fault</td><td width=20>0</td></tr>
+</table>
+
+<table style="width:300px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=6 style="background-color:#444444;color:white;">EMS Control [FLAG 5-BMS_Infor]</td></tr>
+<tr><td width=80>BMS_Ready</td><td width=20>1</td><td width=80>BMS_War</td><td width=20>0</td><td width=80>BMS_Fault</td><td width=20>0</td></tr>
+<tr><td>Relay_M</td><td>1</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+</td><td style="background-color:#DDDDFF; vertical-align:top;">
+<table style="width:400px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=2 style="background-color:#444444;color:white;">Version Information</td></tr>
+<tr><td width=100>EMS Version</td><td> V01.02 ,GER, Mar  2 2017</td></tr>
+<tr><td>DSP-1 Version</td><td> (U) = 0x0F , (I) = 0x03 </td></tr>
+<tr><td>DSP-2 Version</td><td> (U) = 0x0F , (I) = 0x03 </td></tr>
+<tr><td>EMS-Model Name</td><td> ELSR552-00001 </td></tr>
+<tr><td>PCS-Model Name</td><td> ELSR552-00001 </td></tr>
+<tr><td colspan=2>Mode Mismatch Diag. =  0 </td></tr>
+</table>
+
+<table style="width:400px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=6 style="background-color:#444444;color:white;">PCS Status</td></tr>
+<tr><td width=70>READY</td><td width=30>1</td><td width=70>FAULT:</td><td width=30>0</td><td width=70>PV Limited</td><td width=30>0</td></tr>
+<tr><td>DIS_Ava.</td><td>1</td><td colspan=4> PV_Av.(1), PV_Auto_Ava.(1) </td></tr>
+<tr><td>Derating</td><td>0</td><td>G_Relay_OK</td><td>1</td><td>PV_Insul_End</td><td>1</td></tr>
+<tr><td>PV_Start_Grad.</td><td>0</td><td>Factory Mode</td><td>0</td><td>INV max</td><td>4600</td></tr>
+<tr><td>PV1_Install</td><td>3300</td><td>PV2_Install</td><td>3300</td><td>Feed-In Limit </td><td> 70 %</td></tr>
+<tr><td align=right colspan=2>FAN Warning : </td><td>0</td><td align=right colspan=2>BAT CONN Warning : </td><td>0</td></tr>
+<tr><td>Grid_Relay</td><td>63</td><td>Bat_Relay</td><td>4177</td><td> &nbsp; </td><td> &nbsp; </td></tr>
+</table><table style="width:400px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=7 style="background-color:#444444;color:white;">PCS Sensing Data</td></tr>
+<tr><td width=40 style="background-color:#444444;color:white;">PV-1</td><td width=65>V[V]:</td><td width=50> 286.2</td><td width=65>I[A]:</td><td width=50>   6.7</td><td width=65>P[W]:</td><td width=50>1911.8</td></tr>
+<tr><td width=40 style="background-color:#444444;color:white;">PV-2</td><td>V[V]:</td><td> 283.9</td><td>I[A]:</td><td>   7.1</td><td>P[W]:</td><td>2024.2</td></tr>
+<tr><td style="background-color:#444444;color:white;">BDC</td><td>V[V]:</td><td>  64.0</td><td>I[A]:</td><td>  -0.2</td><td>P[W]:</td><td> -12.8</td></tr>
+<tr><td rowspan=2 style="background-color:#444444;color:white;">INV</td><td>V[V]:</td><td> 239.0</td><td>I[A]:</td><td>  16.1</td><td>P[W]:</td><td>3819.58</td></tr>
+<tr><td>F[Hz]:</td><td>  50.0</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td style="background-color:#444444;color:white;">Temp.</td><td>INV:</td><td>2046.0</td><td>BDC:</td><td>2183.0</td><td>PV:</td><td>2130.0</td></tr>
+<tr><td style="background-color:#444444;color:white;">Etc.</td><td>Temp.Hex</td><td>0x00</td><td>HanSol</td><td style="background-color:#44FF44">50Hz</td><td>PV2:</td><td>2135.0</td></tr>
+<tr><td style="background-color:#444444;color:white;">DATE</td><td colspan=4>2019-06-29 , 15:46:33</td><td>DCL[V]</td><td> 392.3</td></tr>
+</table>
+
+<table style="width:400px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=8 style="background-color:#444444;color:white;">PCS OPMODE and Diag.</td></tr>
+<tr><td width=70>Status</td><td width=30>0x1B</td><td width=70>mode0</td><td width=30>0x00</td><td width=70>mode1</td><td width=30>0x10</td><td width=70>mode2</td><td width=30>0x20</td></tr>
+<tr><td>mode3</td><td>0x12</td><td>mode4</td><td>0x0D</td><td>&nbsp;</td>&nbsp;<td></td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>diag0</td><td>0x00</td><td>diag1</td><td>0x02</td><td>diag2</td><td>0x00</td><td>diag3</td><td>0x00</td></tr>
+<tr><td>diag4</td><td>0x00</td><td>diag5</td><td>0x00</td><td>diag6</td><td>0x00</td><td>diag7</td><td>0x00</td></tr>
+<tr><td>diag8</td><td>0x00</td><td>diag9</td><td>0x00</td><td>diag10</td><td>0x00</td><td>diag11</td><td>0x00</td></tr>
+<tr><td>diag12</td><td>0x00</td><td>diag13</td><td>0x00</td><td>diag14</td><td>0x00</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table style="width:400px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=6 style="background-color:#444444;color:white;">Single Fault</td></tr>
+</tr><td width=160>[1]2018-01-30,23:29</td>
+<td width=70>Data_H</td><td width=50>0x00</td><td width=70>Data_L</td><td width=50>0x02</td></tr>
+</tr><td width=160>[2]2018-07-25,15:28</td>
+<td width=70>Data_H</td><td width=50>0x01</td><td width=70>Data_L</td><td width=50>0x00</td></tr>
+</tr><td width=160>[3]2255-255-255,255:255</td>
+<td width=70>Data_H</td><td width=50>0xFF</td><td width=70>Data_L</td><td width=50>0xFF</td></tr>
+</tr><td width=160>[4]2255-255-255,255:255</td>
+<td width=70>Data_H</td><td width=50>0xFF</td><td width=70>Data_L</td><td width=50>0xFF</td></tr>
+</tr><td width=160>[5]2255-255-255,255:255</td>
+<td width=70>Data_H</td><td width=50>0xFF</td><td width=70>Data_L</td><td width=50>0xFF</td></tr>
+<table style="width:400px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=6 style="background-color:#444444;color:white;">PCS Fault Data</td></tr>
+<tr><td width=90>INV_Grid_V</td><td width=50>  0.0</td> <td width=90>INV_DCL_V</td><td width=50>  0.0</td> <td width=90>INV_MCon_V</td><td width=50> 67.6</td></tr>
+<tr><td>INV_MCon_V2</td><td>168.7</td> <td>BDC_Grid_V</td><td>  0.0</td> <td>INV_MCon_I</td><td>0</td></tr>
+<tr><td>INV_MCon_I2</td><td>0</td> <td>BDC_Fault</td><td>0x00</td> <td>BDC_V</td><td>0</td></tr>
+<tr><td>BDC_I</td><td>0</td> <td>DSP_mode</td><td>0x00</td> <td>GRID DC I</td><td>0.1</td></tr>
+<tr><td>PVC LeakI</td><td>14</td> <td>PV1 R I</td><td>0.034</td> <td>PV2 R I</td><td>0.035</td></tr>
+</table>
+
+</td><td rowspan=2 style="background-color:#FFFFFF; vertical-align:top;">
+<table style="width:300px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=2 style="background-color:#444444;color:white;">Algorithm - PV Coeff. Update</td></tr>
+<tr><td>Coeff. Value</td><td>66 / 100</td></tr>
+<tr><td>Weight Count</td><td>19</td></tr>
+</table>
+
+</td></tr><tr><td style="background-color:#FFDDFF; vertical-align:top;">
+<table style="width:300px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=6 style="background-color:#444444;color:white;">EMS Control [DIAG 0 - Communication]</td></tr>
+<tr><td width=90>PCS</td><td width=50>0</td><td width=90>Meter</td><td width=50>0</td><td width=90>Remote</td><td width=50>0</td></tr>
+<tr><td>SD-Card</td><td>0</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table style="width:300px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=4 style="background-color:#444444;color:white;">Communication Error Rate</td></tr>
+<tr><td width=50>LAN</td><td width=50>0 %</td><td width=50>CAN</td><td width=50>0 %</td></tr>
+<tr><td>Meter-Err</td><td>0 %</td><td>(D0 comm.)</td><td>&nbsp;</td></tr>
+</table>
+
+</td><td style="background-color:#FFDDFF; vertical-align:top;">
+<table style="width:400px; margin:2px; border-spacing:1px; background-color:#0000FF; border-collapse:collapse; border: 1px solid #666666; padding:2px;">
+<tr><td align=center colspan=9 style="background-color:#444444;color:white;">BMS data</td></tr>
+<tr><td width=40 style="background-color:#444444;color:white;" rowspan=3>Status</td><td width=70>Ready:</td><td width=30>1</td><td width=70>Fault:</td><td width=30>0</td><td width=70>Charge Ava.</td><td width=30>0</td><td width=70>DisCharge Ava.:</td><td width=30>1</td></tr>
+<tr><td>SOC(%):</td><td>  93.0(  92.0)</td><td>SOH(%):</td><td> 100.0</td><td> </td><td> </td><td>WARN</td><td>0</td></tr>
+<tr><td colspan=2>Rack_V(V):</td><td colspan=2>  64.6</td><td colspan=2>Rack_I(I):</td><td colspan=2>  -0.2</td></tr>
+<tr><td style="background-color:#444444;color:white;" rowspan=5>Cell-V</td><td>Cell-1</td><td> 4.036</td><td>Cell-2</td><td> 4.035</td><td>Cell-3</td><td> 4.036</td><td>Cell-4</td><td> 4.040</td></tr>
+<tr><td>Cell-5</td><td> 4.034</td><td>Cell-6</td><td> 4.035</td><td>Cell-7</td><td> 4.036</td><td>Cell-8</td><td> 4.038</td></tr>
+<tr><td>Cell-9</td><td> 4.040</td><td>Cell-10</td><td> 4.043</td><td>Cell-11</td><td> 4.036</td><td>Cell-12</td><td> 4.039</td></tr>
+<tr><td>Cell-13</td><td> 4.037</td><td>Cell-14</td><td> 4.038</td><td>Cell-15</td><td> 4.037</td><td>Cell-16</td><td> 4.037</td></tr>
+<tr><td>Max</td><td> 4.043</td><td>Ave</td><td> 4.037</td><td>Min</td><td> 4.034</td><td> </td><td> </td></tr>
+<tr><td style="background-color:#444444;color:white;" rowspan=3>Cell-T</td><td>Cell-1</td><td>  27.0</td><td>Cell-2</td><td>  27.0</td><td>Cell-3</td><td>  26.0</td><td>Cell-4</td><td>  26.0</td></tr>
+<tr><td>Cell-5</td><td>  25.0</td><td>Cell-6</td><td>  25.0</td><td>Cell-7</td><td>  25.0</td><td>Cell-8</td><td>  25.0</td></tr>
+<tr><td>Max</td><td>  27.0</td><td>Ave</td><td>  25.0</td><td>Min</td><td>  25.0</td><td> </td><td> </td></tr>
+<tr><td style="background-color:#444444;color:white;" colspan=2 >Cell-CB</td><td colspan=3>0x00 , 0x00</td><td style="background-color:#444444;color:white;">Diag0</td><td>0x00</td><td>Diag1</td><td>0x00</td></tr>
+<tr><td style="background-color:#444444;color:white;">Diag</td><td>Diag2</td><td>0x00</td><td>Diag3</td><td>0x00</td><td>Diag4</td><td>0x00</td><td>Diag5</td><td>0x00</td></tr>
+</table>
+
+</td></tr></table></body>
+</html>
+
