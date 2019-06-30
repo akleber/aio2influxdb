@@ -8,10 +8,13 @@ import logging
 import sys
 
 
-DB_NAME = 'aio-test'
+DB_NAME = 'aio'
 AIO_HOST = '192.168.178.23'
 FREQUENCY = 5
-TEST_MODE = False
+
+TEST_MODE = Flase
+TEST_MODE_FILE = 'examples/F0.html'
+MAX_NUMBER_OF_EXCEPTIONS = 5
 
 
 def write_data(db, time, measurement, value):
@@ -26,6 +29,7 @@ def write_data(db, time, measurement, value):
     ]
     if db:
         db.write_points(json_body)
+        logging.info('Data written: {}: {}'.format(measurement, value))
 
 
 def fetch_html():
@@ -36,6 +40,9 @@ def fetch_html():
         r = requests.get("http://{}:21710/F0".format(AIO_HOST), timeout=timeout)
         if r.ok:
             content = r.text
+    else:
+        with open(TEST_MODE_FILE, "r") as myfile:
+            content = myfile.read()
 
     return content
 
@@ -55,7 +62,13 @@ def parse_and_write(db, html):
             value = m.group(1)
 
             write_data(db, time, measurement, value)
-            logging.info('Data written: {}: {}'.format(measurement, value))
+        else:
+            # measurment not found, safe html for reference
+            filename = "parsing_failed-" + time.strftime('%Y_%m_%d-%H_%M_%S-') + measurement + ".html"
+            with open(filename, "w") as myfile:
+                myfile.write(html)
+            logging.info("Could not find '{}'. Safeing: {}".format(measurement, filename))
+        raise Exception
 
 
 def main():
@@ -67,22 +80,34 @@ def main():
         ])
     logging.info('Startup')
 
+    if TEST_MODE:
+        logging.info('TEST MODE')
+
     dbclient = None
     if not TEST_MODE:
-        dbclient = InfluxDBClient(host='localhost', port=8086, username='root', password='root', database=DB_NAME)
+        dbclient = InfluxDBClient(host='localhost', port=8086,
+                                  username='root', password='root',
+                                  database=DB_NAME)
         logging.info('Database connection established')
 
         dbclient.create_database(DB_NAME)
         logging.info("Ensure database: " + DB_NAME)
 
-    while True:
+    exceptions = 0
+    while exceptions < MAX_NUMBER_OF_EXCEPTIONS:
         try:
             html = fetch_html()
             parse_and_write(dbclient, html)
 
             time.sleep(FREQUENCY)
         except Exception:
-            logging.exception("Exception")
+            exceptions = exceptions + 1
+            timestring = time.strftime('%Y_%m_%d-%H_%M_%S')
+            logging.exception("Exception at " + timestring)
+
+            filename = "exception-" + timestring + ".html"
+            with open(filename, "w") as myfile:
+                myfile.write(html)
 
 
 if __name__ == "__main__":
