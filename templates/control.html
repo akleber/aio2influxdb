@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Control</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+<body>
+    <header class="navbar" style="padding: 1rem;">
+        <section class="navbar-section">
+            <a href="fetch" class="btn">git fetch</a>
+            <div class="p-2"></div>
+            <a href="rebase" class="btn">git rebase</a>
+            <div class="p-2"></div>
+            <a href="restart" class="btn">restart aio2influxdb</a>
+            <div class="p-2"></div>
+            <a href="shutdown" class="btn">shutdown</a>            
+        </section>
+    </header>
+
+    <div style="padding: 1rem;">
+        <pre class="code"><code>
+            {{ content }}
+        </code></pre>
+    </div>
+
+</body>
