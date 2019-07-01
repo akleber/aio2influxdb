@@ -10,6 +10,12 @@
 <body>
     <header class="navbar" style="padding: 1rem;">
         <section class="navbar-section">
+            <a href="/" class="btn btn-primary">home</a>
+            <div class="p-2"></div>
+            <a href="logfiles" class="btn">logfiles</a>
+            <div class="p-2"></div>
+            <a href="status" class="btn">git status</a>
+            <div class="p-2"></div>
             <a href="fetch" class="btn">git fetch</a>
             <div class="p-2"></div>
             <a href="rebase" class="btn">git rebase</a>
@@ -20,10 +26,18 @@
         </section>
     </header>
 
+{% if code %}
     <div style="padding: 1rem;">
         <pre class="code"><code>
-            {{ content }}
+{{ code }}
         </code></pre>
     </div>
+{% endif %}
+
+{% if content %}
+    <div style="padding: 1rem;">
+        {{ content | safe }}
+    </div>
+{% endif %}
 
 </body>

@@ -6,6 +6,7 @@ import re
 import math
 import logging
 import sys
+from pathlib import Path
 
 
 DB_NAME = 'aio'
@@ -15,6 +16,8 @@ FREQUENCY = 5
 TEST_MODE = False
 TEST_MODE_FILE = 'examples/F0.html'
 MAX_NUMBER_OF_EXCEPTIONS = 5
+
+logs = Path('logs')
 
 
 def write_data(db, time, measurement, value):
@@ -41,7 +44,8 @@ def fetch_html():
         if r.ok:
             content = r.text
     else:
-        with open(TEST_MODE_FILE, "r") as myfile:
+        p = Path(TEST_MODE_FILE)
+        with p.open("r") as myfile:
             content = myfile.read()
 
     return content
@@ -64,18 +68,19 @@ def parse_and_write(db, html):
             write_data(db, time, measurement, value)
         else:
             # measurment not found, safe html for reference
-            filename = "parsing_failed-" + time.strftime('%Y_%m_%d-%H_%M_%S-') + measurement + ".html"
-            with open(filename, "w") as myfile:
+            filepath = logs / "parsing_failed-{}-{}.html".format(time.strftime('%Y_%m_%d-%H_%M_%S'), measurement)
+            with filepath.open("w") as myfile:
                 myfile.write(html)
             logging.info("Could not find '{}'. Safeing: {}".format(measurement, filename))
-        raise Exception
 
 
 def main():
+    logs.mkdir(exist_ok=True)
+
     logging.basicConfig(
         level=logging.INFO,
         handlers=[
-            logging.FileHandler("aio2influxdb.log"),
+            logging.FileHandler(logs / "aio2influxdb.log"),
             logging.StreamHandler(sys.stdout)
         ])
     logging.info('Startup')
@@ -105,8 +110,8 @@ def main():
             timestring = time.strftime('%Y_%m_%d-%H_%M_%S')
             logging.exception("Exception at " + timestring)
 
-            filename = "exception-" + timestring + ".html"
-            with open(filename, "w") as myfile:
+            filepath = logs / "exception-{}.html".format(timestring)
+            with filepath.open("w") as myfile:
                 myfile.write(html)
 
 
