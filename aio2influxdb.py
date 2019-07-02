@@ -11,9 +11,9 @@ from pathlib import Path
 
 DB_NAME = 'aio'
 AIO_HOST = '192.168.178.23'
-FREQUENCY = 5
+FREQUENCY = 10
 
-TEST_MODE = False
+TEST_MODE = True
 TEST_MODE_FILE = 'examples/F0.html'
 MAX_NUMBER_OF_EXCEPTIONS = 5
 
