@@ -17,13 +17,21 @@ def logfiles():
     content = ""
     logfiles = list(logs.glob('*'))
     for logfile in logfiles:
-        content += "<a href='get-logfile/{}'>{}</a><br/>\n".format(logfile.name, logfile.name)
+        content += "<a href='get_logfile/{}'>{}</a><br/>\n".format(logfile.name, logfile.name)
 
     return render_template('control.html', content=content)
 
 
-@app.route('/delete-logfiles')
-def status():
+@app.route("/get_logfile/<log_name>")
+def get_logfile(log_name):
+    try:
+        return send_from_directory(logs, filename=log_name, as_attachment=True)
+    except FileNotFoundError:
+        abort(404)
+
+
+@app.route('/delete_logfiles')
+def delete_logfiles():
     command = ['rm', '-f', 'logs/*']
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     return render_template('control.html', code=result.stdout+result.stderr)
@@ -47,7 +55,13 @@ def fetch():
 def rebase():
     command = ['git', 'rebase']
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-    return render_template('control.html', code=result.stdout+result.stderr)
+    code = result.stdout + result.stderr
+
+    command = ['pip', 'install', '-r', 'requirements.txt']
+    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+    code = code + result.stdout + result.stderr
+
+    return render_template('control.html', code=code)
 
 
 @app.route('/restart')
@@ -65,18 +79,10 @@ def shutdown():
 
 
 @app.route('/reboot')
-def shutdown():
+def reboot():
     command = ['sudo', 'reboot', 'now']
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     return render_template('control.html', code=result.stdout+result.stderr)
-
-
-@app.route("/get-logfile/<log_name>")
-def get_logfile(log_name):
-    try:
-        return send_from_directory(logs, filename=log_name, as_attachment=True)
-    except FileNotFoundError:
-        abort(404)
 
 
 if __name__ == '__main__':
