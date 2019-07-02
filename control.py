@@ -58,15 +58,18 @@ def rebase():
     return render_template('control.html', code=result.stdout+result.stderr)
 
 
+@app.route('/pip')
+def pip():
+    command = ['pip', 'install', '-r', 'requirements.txt']
+    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+    return render_template('control.html', code=result.stdout+result.stderr)
+
+
 @app.route('/restart')
 def restart():
-    command = ['pip', 'install', '-r', 'requirements.txt']
-    result = run(command, shell=True, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-    code = result.stdout + result.stderr + "\n"
-
     command = ['sudo', 'supervisorctl', 'reread']
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-    code = code + result.stdout + result.stderr + "\n"
+    code = result.stdout + result.stderr + "\n"
 
     command = ['sudo', 'supervisorctl', 'update']
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
