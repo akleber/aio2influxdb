@@ -60,7 +60,7 @@ def rebase():
 
 @app.route('/pip')
 def pip():
-    command = ['pip', 'install', '-r', 'requirements.txt']
+    command = ['python', '_venv/bin/pip', 'install', '-r', 'requirements.txt']
     result = run(command, shell=True, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     return render_template('control.html', code=result.stdout+result.stderr)
 
