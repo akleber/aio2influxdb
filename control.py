@@ -72,6 +72,10 @@ def restart():
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     code = code + result.stdout + result.stderr + "\n"
 
+    command = ['sudo', 'supervisorctl', 'restart', 'all']
+    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+    code = code + result.stdout + result.stderr + "\n"
+
     return render_template('control.html', code=code)
 
 
