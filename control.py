@@ -22,6 +22,13 @@ def logfiles():
     return render_template('control.html', content=content)
 
 
+@app.route('/delete-logfiles')
+def status():
+    command = ['rm', '-f', 'logs/*']
+    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+    return render_template('control.html', code=result.stdout+result.stderr)
+
+
 @app.route('/status')
 def status():
     command = ['git', 'status']
@@ -57,12 +64,20 @@ def shutdown():
     return render_template('control.html', code=result.stdout+result.stderr)
 
 
+@app.route('/reboot')
+def shutdown():
+    command = ['sudo', 'reboot', 'now']
+    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+    return render_template('control.html', code=result.stdout+result.stderr)
+
+
 @app.route("/get-logfile/<log_name>")
 def get_logfile(log_name):
     try:
         return send_from_directory(logs, filename=log_name, as_attachment=True)
     except FileNotFoundError:
         abort(404)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
