@@ -55,6 +55,13 @@ def fetch():
 def rebase():
     command = ['git', 'rebase']
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+    return render_template('control.html', code=result.stdout+result.stderr)
+
+
+@app.route('/restart')
+def restart():
+    command = ['ls']
+    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     code = result.stdout + result.stderr
 
     command = ['pip', 'install', '-r', 'requirements.txt']
@@ -62,13 +69,6 @@ def rebase():
     code = code + result.stdout + result.stderr
 
     return render_template('control.html', code=code)
-
-
-@app.route('/restart')
-def restart():
-    command = ['ls']
-    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-    return render_template('control.html', code=result.stdout+result.stderr)
 
 
 @app.route('/shutdown')
