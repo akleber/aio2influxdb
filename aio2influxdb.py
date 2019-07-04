@@ -80,7 +80,7 @@ def main():
     logging.basicConfig(
         level=logging.INFO,
         handlers=[
-            logging.FileHandler("logs/aio2influxdb.log"),
+            logging.FileHandler(str(logs / "aio2influxdb.log")),
             logging.StreamHandler(sys.stdout)
         ])
     logging.info('Startup')

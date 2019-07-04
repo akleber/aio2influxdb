@@ -6,6 +6,7 @@ from pathlib import Path
 app = Flask(__name__)
 logs = Path('logs')
 
+
 @app.route('/')
 def index():
     content = "Hello!"
@@ -25,7 +26,7 @@ def logfiles():
 @app.route("/get_logfile/<log_name>")
 def get_logfile(log_name):
     try:
-        return send_from_directory('logs', filename=log_name, as_attachment=True)
+        return send_from_directory(str(logs), filename=log_name, as_attachment=True)
     except FileNotFoundError:
         abort(404)
 
