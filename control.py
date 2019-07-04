@@ -25,7 +25,7 @@ def logfiles():
 @app.route("/get_logfile/<log_name>")
 def get_logfile(log_name):
     try:
-        return send_from_directory(logs, filename=log_name, as_attachment=True)
+        return send_from_directory('logs', filename=log_name, as_attachment=True)
     except FileNotFoundError:
         abort(404)
 
