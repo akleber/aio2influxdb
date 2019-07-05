@@ -13,8 +13,10 @@ DB_NAME = 'aio'
 AIO_HOST = '192.168.178.23'
 FREQUENCY = 10
 
-TEST_MODE = True
-TEST_MODE_FILE = 'examples/F0.html'
+USE_EXAMPLE = True
+EXAMPLE_FILE = 'examples/F0.html'
+USE_INFLUXDB = True
+
 MAX_NUMBER_OF_EXCEPTIONS = 5
 
 logs = Path('logs')
@@ -38,15 +40,16 @@ def write_data(db, time, measurement, value):
 def fetch_html():
     content = ""
 
-    if not TEST_MODE:
+    if USE_EXAMPLE:
+        p = Path(EXAMPLE_FILE)
+        with p.open("r") as myfile:
+            content = myfile.read()
+
+    else:
         timeout = math.floor(FREQUENCY * 0.6)
         r = requests.get("http://{}:21710/F0".format(AIO_HOST), timeout=timeout)
         if r.ok:
             content = r.text
-    else:
-        p = Path(TEST_MODE_FILE)
-        with p.open("r") as myfile:
-            content = myfile.read()
 
     return content
 
@@ -71,7 +74,7 @@ def parse_and_write(db, html):
             filepath = logs / "parsing_failed-{}-{}.html".format(time.strftime('%Y_%m_%d-%H_%M_%S'), measurement)
             with filepath.open("w") as myfile:
                 myfile.write(html)
-            logging.info("Could not find '{}'. Safeing: {}".format(measurement, filename))
+            logging.info("Could not find '{}'. Safeing: {}".format(measurement, filepath))
 
 
 def main():
@@ -87,11 +90,11 @@ def main():
         ])
     logging.info('Startup')
 
-    if TEST_MODE:
-        logging.info('TEST MODE')
+    if EXAMPLE_FILE:
+        logging.info('Using example file as source')
 
     dbclient = None
-    if not TEST_MODE:
+    if USE_INFLUXDB:
         dbclient = InfluxDBClient(host='localhost', port=8086,
                                   username='root', password='root',
                                   database=DB_NAME)
