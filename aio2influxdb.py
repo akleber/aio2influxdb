@@ -85,7 +85,7 @@ def main():
         format='%(asctime)s %(levelname)-8s %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S',
         handlers=[
-            logging.FileHandler(str(logs / "aio2influxdb.log")),
+            logging.handlers.WatchedFileHandler(str(logs / "aio2influxdb.log")),
             logging.StreamHandler(sys.stdout)
         ])
     logging.info('Startup')
