@@ -5,6 +5,7 @@ import requests
 import re
 import math
 import logging
+from logging.handlers import WatchedFileHandler
 import sys
 from pathlib import Path
 
@@ -85,7 +86,7 @@ def main():
         format='%(asctime)s %(levelname)-8s %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S',
         handlers=[
-            logging.handlers.WatchedFileHandler(str(logs / "aio2influxdb.log")),
+            WatchedFileHandler(str(logs / "aio2influxdb.log")),
             logging.StreamHandler(sys.stdout)
         ])
     logging.info('Startup')
