@@ -33,7 +33,7 @@ def get_logfile(log_name):
 
 @app.route('/delete_logfiles')
 def delete_logfiles():
-    command = ['rm', '-f', 'logs/*']
+    command = ['rm', '-fv', 'logs/*']
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     return render_template('control.html', code=result.stdout+result.stderr)
 
