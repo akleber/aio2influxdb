@@ -5,6 +5,27 @@
 * https://www.circuits.dk/install-grafana-influxdb-raspberry/
 * https://grafana.com/grafana/download?platform=arm
 
+Debian Buster
+```
+apt update
+apt upgrade
+apt install python3 supervisor git screen gnupg
+
+wget -qO- https://repos.influxdata.com/influxdb.key |  apt-key add -
+echo "deb https://repos.influxdata.com/debian buster stable" |  tee /etc/apt/sources.list.d/influxdb.list
+apt update
+apt install influxdb
+
+apt-get install -y software-properties-common
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
+apt update
+apt install grafana
+
+git clone https://github.com/akleber/aio2influxdb.git
+```
+
+Raspberry Pi - Raspbian Stretch
 ```
 sudo apt-get update
 sudo apt-get upgrade
@@ -22,6 +43,7 @@ sudo dpkg -i grafana-rpi_6.2.4_armhf.deb
 
 git clone https://github.com/akleber/aio2influxdb.git
 ```
+
 
 ## Dashboard
 
