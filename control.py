@@ -67,7 +67,7 @@ def get_and_delete():
     code = result.stdout + result.stderr + "\n"
     #return render_template('control.html', code=code)
 
-    return send_from_directory(str(logs), filename=zip_filename, as_attachment=True)
+    return send_from_directory(str(zip_path), filename=zip_filename, as_attachment=True)
 
 
 @app.route('/status')
