@@ -1,6 +1,8 @@
 from flask import Flask, render_template, send_from_directory, abort
 from subprocess import PIPE, run
 from pathlib import Path
+import ZipFile
+import datetime
 
 
 app = Flask(__name__)
@@ -31,11 +33,31 @@ def get_logfile(log_name):
         abort(404)
 
 
-@app.route('/delete_logfiles')
-def delete_logfiles():
+@app.route('/get_and_delete')
+def get_and_delete():
+    zip_filename = 'logs-{date:%Y%m%d_%H%M%S}.zip'.format( date=datetime.datetime.now() )
+    logfiles = list(logs.glob('*'))
+
+    supervisord_log_path = Path('/var/log/supervisor')
+    supervisor_logfiles = list(supervisord_log_path.glob('*'))
+
+    with ZipFile(logs / zip_filename, 'w') as myzip:
+        for logfile in logfiles:
+            myzip.write(logfile)
+
+        for logfile in supervisor_logfiles:
+            myzip.write(logfile)
+
+    send_from_directory(str(logs), filename=zip_filename, as_attachment=True)
+
     command = ['rm -fv logs/*']
     result = run(command, shell=True, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-    return render_template('control.html', code=result.stdout+result.stderr)
+    code = result.stdout + result.stderr + "\n"
+
+    command = ['rm -fv /var/log/supervisor/*']
+    result = run(command, shell=True, stdout=PIPE, stderr=PIPE, universal_newlines=True)
+    code = result.stdout + result.stderr + "\n"
+    return render_template('control.html', code=code)
 
 
 @app.route('/status')
