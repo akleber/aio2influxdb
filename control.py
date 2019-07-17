@@ -3,6 +3,7 @@ from subprocess import PIPE, run
 from pathlib import Path
 from zipfile import ZipFile
 import datetime
+import shutil
 
 
 app = Flask(__name__)
@@ -35,18 +36,27 @@ def get_logfile(log_name):
 
 @app.route('/get_and_delete')
 def get_and_delete():
+    zip_path = Path('zip')
+    shutil.rmtree(zip_path, ignore_errors=True)
+    zip_path.mkdir()
+
     zip_filename = 'logs-{date:%Y%m%d_%H%M%S}.zip'.format( date=datetime.datetime.now() )
-    logfiles = list(logs.glob('*'))
+
+    if logs.is_dir():
+        logfiles = list(logs.glob('*'))
 
     supervisord_log_path = Path('/var/log/supervisor')
-    supervisor_logfiles = list(supervisord_log_path.glob('*'))
+    if supervisord_log_path.is_dir():
+        supervisor_logfiles = list(supervisord_log_path.glob('*'))
 
-    with ZipFile(logs / zip_filename, 'w') as myzip:
-        for logfile in logfiles:
-            myzip.write(logfile)
+    with ZipFile(zip_path / zip_filename, 'w') as myzip:
+        if logfiles:
+            for logfile in logfiles:
+                myzip.write(logfile)
 
-        for logfile in supervisor_logfiles:
-            myzip.write(logfile)
+        if supervisor_logfiles:
+            for logfile in supervisor_logfiles:
+                myzip.write(logfile)
 
     send_from_directory(str(logs), filename=zip_filename, as_attachment=True)
 
