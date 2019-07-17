@@ -1,7 +1,7 @@
 from flask import Flask, render_template, send_from_directory, abort
 from subprocess import PIPE, run
 from pathlib import Path
-import ZipFile
+from zipfile import ZipFile
 import datetime
 
 
