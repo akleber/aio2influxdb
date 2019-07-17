@@ -58,8 +58,6 @@ def get_and_delete():
             for logfile in supervisor_logfiles:
                 myzip.write(logfile)
 
-    send_from_directory(str(logs), filename=zip_filename, as_attachment=True)
-
     command = ['rm -fv logs/*']
     result = run(command, shell=True, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     code = result.stdout + result.stderr + "\n"
@@ -67,7 +65,9 @@ def get_and_delete():
     command = ['rm -fv /var/log/supervisor/*']
     result = run(command, shell=True, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     code = result.stdout + result.stderr + "\n"
-    return render_template('control.html', code=code)
+    #return render_template('control.html', code=code)
+
+    return send_from_directory(str(logs), filename=zip_filename, as_attachment=True)
 
 
 @app.route('/status')
